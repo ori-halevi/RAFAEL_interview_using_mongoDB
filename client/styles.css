@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.search-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-section input,
+.search-section select,
+.search-section button {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.results-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popular-words {
+    width: 30%;
+}
+
+.popular-words h2,
+.popular-words h3 {
+    text-align: center;
+}
+
+.popular-words-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.popular-words-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.reviews-table {
+    width: 65%;
+}
+
+.reviews-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reviews-table th,
+.reviews-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.reviews-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}

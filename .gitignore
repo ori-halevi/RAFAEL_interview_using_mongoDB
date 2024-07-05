@@ -1,0 +1,14 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+הוראות אל GPT
+.idea
+venv_RAFAEL_inteview
+*.csv
+__pycache__
+glove.6B.300d.txt

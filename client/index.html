@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Reviews</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazon Reviews Analysis</h1>
+        <div class="search-section">
+            <input type="text" id="search-word" placeholder="Enter word to search...">
+            <select id="sentiment-filter">
+                <option value="all">All</option>
+                <option value="positive">Positive</option>
+                <option value="negative">Negative</option>
+            </select>
+            <button id="search-button">Search</button>
+            <button id="export-button" disabled>Export to Excel</button>
+        </div>
+        <div class="results-section">
+            <div class="popular-words">
+                <h2>Popular Words</h2>
+                <div class="popular-words-list">
+                    <div>
+                        <h3>Positive</h3>
+                        <ul id="positive-words-list"></ul>
+                    </div>
+                    <div>
+                        <h3>Negative</h3>
+                        <ul id="negative-words-list"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews-table">
+                <table id="reviews-table">
+                    <thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    <script src="script.js"></script>
+    </div>
+</body>
+</html>
