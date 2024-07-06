@@ -48,6 +48,10 @@ def get_reviews():  # Returns JSON
         except KeyError:
             # If the word is not in the model, a search will run only for the original word
             pass
+        except Exception as error:  # Handle any other exceptions, including if glove_model is None
+            print(f"An error occurred: {error}")
+            # Handle the case where glove_model is None or any other unexpected errors
+
 
     positive_reviews, negative_reviews = [], []
 
