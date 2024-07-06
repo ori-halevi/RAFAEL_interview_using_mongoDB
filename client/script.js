@@ -100,13 +100,23 @@ function displayPopularWords(positiveWords, negativeWords) {
 async function loadStopWords() {
     try {
         const response = await fetch('./data/stop_words.json');
+        if (!response.ok) {
+            // Handle file not found (404) or any other error status
+            console.error(`Error: Failed to load stop words (status ${response.status})`);
+            return new Set();
+        }
         const data = await response.json();
         return new Set(data.stop_words);
     } catch (error) {
-        console.error('Error loading stop words:', error);
+        if (error.name === 'TypeError') {
+            console.error('Error: Stop words file not found or cannot be accessed');
+        } else {
+            console.error('Error loading stop words:', error);
+        }
         return new Set();
     }
 }
+
 
 // Function to count the popular words in the reviews
 async function popularWords(reviews) {
