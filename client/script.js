@@ -104,6 +104,7 @@ async function loadStopWords() {
         return new Set(data.stop_words);
     } catch (error) {
         console.error('Error loading stop words:', error);
+        return new Set();
     }
 }
 
@@ -111,7 +112,7 @@ async function loadStopWords() {
 async function popularWords(reviews) {
     const punctuation = new Set('!()-[]{};:\'"\\,<>./?@#$%^&*_~');
     let wordCounter = {};
-    
+
     const stopWords = await loadStopWords();
 
     reviews.forEach(review => {
@@ -135,12 +136,14 @@ async function popularWords(reviews) {
 
 // Function to export the fetched data to an Excel file
 function exportToExcel() {
-    if (!lastFetchedData) {
+    const reviews = lastFetchedData.positive_reviews.concat(lastFetchedData.negative_reviews)
+    // Are there any reviews to export?
+    if (reviews.length === 0) {
         alert('No data to export');
         return;
     }
 
-    const reviews = lastFetchedData.positive_reviews.concat(lastFetchedData.negative_reviews).map(review => ({
+    reviews.map(review => ({
         Label: review.label === "negative" ? 'Negative' : 'Positive',
         Title: review.title,
         Content: review.content
