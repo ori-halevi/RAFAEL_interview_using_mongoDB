@@ -13,7 +13,7 @@ from db.db_train import get_all_positive_reviews as get_train_positive_reviews, 
 app = Flask(__name__)
 CORS(app)  # Allow access from any sources
 
-# Load glove model
+# Load glove model ~ O(N) ~
 try:
     print("Starting loading glove model...")
     glove_model = gensim.models.KeyedVectors.load_word2vec_format('data/glove.6B.300d.txt', binary=False)
@@ -44,7 +44,7 @@ def get_reviews():  # Returns JSON
 
     if word_include:  # Did the user ask for specific word to be included?
 
-        try:
+        try:  #  ~ O(N log N) ~
             similar_words += [word for word, similarity in glove_model.most_similar(word_include, topn=5)]
         except KeyError:
             # If the word is not in the model, a search will run only for the original word
