@@ -34,7 +34,9 @@ async function fetchReviews(wordInclude, sentimentFilter) {
         const negative_popular_words = await popularWords(data.negative_reviews);
             
         displayPopularWords(positive_popular_words, negative_popular_words);
-        console.log(data.similar_words);
+        if (data.similar_words[0]) {
+            console.log(data.similar_words);
+        }
 
         // Save the fetched data including popular words
         lastFetchedData = {

@@ -30,7 +30,8 @@ def get_reviews_by_sentiment(similar_words, sentiment):
         return get_test_negative_reviews(similar_words) + get_train_negative_reviews(similar_words)
     else:
         return get_test_positive_reviews(similar_words) + get_train_positive_reviews(similar_words) + \
-               get_test_negative_reviews(similar_words) + get_train_negative_reviews(similar_words)
+            get_test_negative_reviews(similar_words) + get_train_negative_reviews(similar_words)
+
 
 # Create get route for reviews
 @app.route('/reviews', methods=['GET'])
@@ -52,7 +53,6 @@ def get_reviews():  # Returns JSON
             print(f"An error occurred: {error}")
             # Handle the case where glove_model is None or any other unexpected errors
 
-
     positive_reviews, negative_reviews = [], []
 
     if pos_neg_all == 'positive':
@@ -70,10 +70,11 @@ def get_reviews():  # Returns JSON
         'similar_words': similar_words
     })
 
+
 # Handle errors
 @app.errorhandler(Exception)
-def handle_error(e):
-    return jsonify(error=str(e)), 500
+def handle_error(error):
+    return jsonify(error=str(error)), 500
 
 
 if __name__ == '__main__':
