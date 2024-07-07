@@ -21,7 +21,7 @@ def get_all_reviews():
     return format_reviews(reviews)
 
 
-# Returns reviews containing specific words
+# Returns reviews containing specific words. # ~ O(N) ~
 def get_pos_or_neg_reviews(words_list: list, binary_pos_or_neg: int) -> list:
     """
     Retrieve reviews based on specified words and sentiment (positive or negative).
@@ -36,7 +36,7 @@ def get_pos_or_neg_reviews(words_list: list, binary_pos_or_neg: int) -> list:
     Example:
         get_pos_or_neg_reviews(['good', 'great'], 1)  # Retrieves positive reviews containing 'good' or 'great'.
     """
-    # Create regular queries (regex) for each word in the list
+    # Create regular queries (regex) for each word in the list. ~ O(N) ~
     regex_queries = [{"row.title": {"$regex": r"\b" + re.escape(w) + r"\b", "$options": "i"}} for w in words_list] + \
                     [{"row.content": {"$regex": r"\b" + re.escape(w) + r"\b", "$options": "i"}} for w in words_list]
     # Creating the final query with all conditions
@@ -44,7 +44,7 @@ def get_pos_or_neg_reviews(words_list: list, binary_pos_or_neg: int) -> list:
         "row.label": binary_pos_or_neg,
         "$or": regex_queries
     }
-    reviews = test_collection.find(query)
+    reviews = test_collection.find(query)  # ~ O(N) ~
     return format_reviews(reviews)
 
 
@@ -60,7 +60,7 @@ def get_negative_reviews(words_list: list) -> list:
     return get_all_negative_reviews()
 
 
-def format_reviews(reviews):
+def format_reviews(reviews):  # ~ O(N) ~
     """
     Format MongoDB query results into a list of dictionaries with specific fields.
 
