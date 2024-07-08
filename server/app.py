@@ -13,7 +13,7 @@ from db.db_train import get_all_positive_reviews as get_train_positive_reviews, 
 app = Flask(__name__)
 CORS(app)  # Allow access from any sources
 
-# Load glove model
+# Load glove model to get similar words
 try:  # ~ O(N) ~
     print("Starting loading glove model...")
     glove_model = gensim.models.KeyedVectors.load_word2vec_format('data/glove.6B.300d.txt', binary=False)
